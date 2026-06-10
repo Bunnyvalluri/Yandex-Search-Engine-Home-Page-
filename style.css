@@ -166,6 +166,11 @@ ol, ul {
 
 .top-logo-link {
   display: none; /* Hidden on desktop */
+  transition: transform var(--transition-normal);
+}
+
+.top-logo-link:hover {
+  transform: scale(1.05);
 }
 
 /* Right side of nav */
@@ -238,6 +243,11 @@ ol, ul {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform var(--transition-normal);
+}
+
+.logo-wrap:hover {
+  transform: scale(1.02);
 }
 
 .yandex-logo {
@@ -990,58 +1000,5 @@ ol, ul {
   .news-card-img {
     width: 70px;
     height: 52px;
-  }
-}
-
-/* =============================================================
-   9. BRAND LOGO ANIMATED DOODLE (SVG MOTION EFFECTS)
-   ============================================================= */
-
-/* Base path setup for interactive local transforms */
-.yandex-logo g > path,
-.top-logo-svg g > path {
-  transform-box: fill-box;
-  transform-origin: center;
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* Hover Staggered Letter Bounce Wave */
-.yandex-logo:hover g > path,
-.top-logo-svg:hover g > path {
-  animation: logo-wave-bounce 0.7s ease-in-out;
-}
-
-/* Delays to order wave from Y -> a -> n -> d -> e -> x */
-.yandex-logo g > path:nth-child(6),
-.top-logo-svg g > path:nth-child(6) {
-  animation-delay: 0ms; /* Y */
-}
-.yandex-logo g > path:nth-child(4),
-.top-logo-svg g > path:nth-child(4) {
-  animation-delay: 80ms; /* a */
-}
-.yandex-logo g > path:nth-child(1),
-.top-logo-svg g > path:nth-child(1) {
-  animation-delay: 160ms; /* n */
-}
-.yandex-logo g > path:nth-child(2),
-.top-logo-svg g > path:nth-child(2) {
-  animation-delay: 240ms; /* d */
-}
-.yandex-logo g > path:nth-child(3),
-.top-logo-svg g > path:nth-child(3) {
-  animation-delay: 320ms; /* e */
-}
-.yandex-logo g > path:nth-child(5),
-.top-logo-svg g > path:nth-child(5) {
-  animation-delay: 400ms; /* x */
-}
-
-@keyframes logo-wave-bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
   }
 }
