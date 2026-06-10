@@ -772,15 +772,51 @@ ol, ul {
 }
 
 /* ── 8. RESPONSIVE DESIGN ─────────────────────────────────── */
-@media (max-width: 860px) {
-  .services-grid {
-    grid-template-columns: repeat(4, 1fr);
+
+/* 1. Large Desktop (1441px+) */
+@media (min-width: 1441px) {
+  .content-inner {
+    max-width: 860px;
+  }
+  .hero-content {
+    max-width: 860px;
+  }
+  .yandex-logo {
+    width: 230px;
   }
 }
 
-@media (max-width: 640px) {
+/* 2. Desktop (1025px - 1440px) is covered by the default styles above */
+
+/* 3. Small Laptop (769px - 1024px) */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px 4px;
+  }
   .hero-section {
-    padding: 32px 16px 28px;
+    padding: 40px 20px 32px;
+  }
+}
+
+/* 4. Tablet (481px - 768px) */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px 4px;
+  }
+  .topnav-inner {
+    padding: 0 16px;
+  }
+  .content-section {
+    padding: 24px 20px 36px;
+  }
+}
+
+/* 5. Large Mobile (376px - 480px) */
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 32px 16px 24px;
   }
 
   .hero-content {
@@ -788,7 +824,7 @@ ol, ul {
   }
 
   .yandex-logo {
-    width: 160px;
+    width: 150px;
   }
 
   .search-form {
@@ -822,19 +858,14 @@ ol, ul {
   }
 
   .services-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px 2px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px 2px;
   }
 
   .service-icon-wrap {
     width: 48px;
     height: 48px;
     border-radius: 14px;
-  }
-
-  .service-icon-img {
-    width: 26px;
-    height: 26px;
   }
 
   .service-icon-fa {
@@ -851,11 +882,11 @@ ol, ul {
   }
 
   .top-services {
-    display: none; /* Hide nav links on very small screens */
+    display: none; /* Hide nav links on mobile viewports */
   }
 
   .content-section {
-    padding: 20px 16px 32px;
+    padding: 16px 12px 28px;
   }
 
   .news-img-placeholder,
@@ -871,8 +902,33 @@ ol, ul {
   }
 }
 
-@media (max-width: 380px) {
+/* 6. Small Mobile (320px - 375px) */
+@media (max-width: 375px) {
   .services-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 6px 2px;
+  }
+
+  .service-icon-wrap {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+  }
+
+  .service-icon-fa {
+    font-size: 16px;
+  }
+
+  .service-label {
+    font-size: 0.68rem;
+  }
+
+  .news-card {
+    gap: 12px;
+  }
+
+  .news-card-img {
+    width: 70px;
+    height: 52px;
   }
 }
