@@ -160,6 +160,10 @@ ol, ul {
   transform: rotate(180deg);
 }
 
+.mobile-menu-btn {
+  display: none; /* Hidden on desktop */
+}
+
 /* Right side of nav */
 .top-right {
   display: flex;           /* Flexbox: align sign-in and weather */
@@ -801,12 +805,30 @@ ol, ul {
 
 /* 4. Tablet (481px - 768px) */
 @media (max-width: 768px) {
-  .services-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px 4px;
+  .top-services {
+    display: none; /* Hide top navigation links to prevent overlap */
+  }
+  .mobile-menu-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+    transition: background var(--transition-fast), color var(--transition-fast);
+  }
+  .mobile-menu-btn:hover {
+    background: var(--color-surface-2);
+    color: var(--color-text);
   }
   .topnav-inner {
     padding: 0 16px;
+  }
+  .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px 4px;
   }
   .content-section {
     padding: 24px 20px 36px;
@@ -857,6 +879,12 @@ ol, ul {
     border-left: none;
   }
 
+  .search-suggestions {
+    top: 64px; /* Align suggestion dropdown directly below search input wrap */
+    right: 0;
+    left: 0;
+  }
+
   .services-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 8px 2px;
@@ -873,16 +901,19 @@ ol, ul {
   }
 
   .topnav {
-    height: auto;
-    padding: 6px 0;
+    height: var(--topnav-height); /* Keep fixed 48px height on mobile */
   }
 
   .topnav-inner {
     padding: 0 12px;
   }
 
-  .top-services {
-    display: none; /* Hide nav links on mobile viewports */
+  .live-clock {
+    display: none; /* Hide clock on mobile screen to save space (since phone status bar has it) */
+  }
+
+  .btn-signin {
+    padding: 5px 16px; /* Slightly more compact button on mobile */
   }
 
   .content-section {
@@ -899,6 +930,19 @@ ol, ul {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+  }
+
+  .feed-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+  }
+
+  .feed-tabs::-webkit-scrollbar {
+    display: none; /* Hide scrollbar Chrome/Safari */
   }
 }
 

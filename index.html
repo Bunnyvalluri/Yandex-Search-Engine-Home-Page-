@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=1.5" />
 </head>
 
 <body>
@@ -19,6 +19,11 @@
   <!-- ===== TOP NAVIGATION ===== -->
   <header class="topnav">
     <div class="topnav-inner">
+      <!-- Left: Mobile menu button (visible on mobile only) -->
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
       <!-- Left: Services links -->
       <nav class="top-services" aria-label="Top services">
         <a href="#" class="top-link">Mail</a>
@@ -89,7 +94,7 @@
       </div>
 
       <!-- Search Form -->
-      <form class="search-form" id="main-search-form" action="https://yandex.20-netfixlty.app/search/" method="get">
+      <form class="search-form" id="main-search-form" action="https://yandex.com/search/" method="get">
         <div class="search-input-wrap">
           <!-- Search icon -->
           <svg class="search-icon-left" width="20" height="20" viewBox="0 0 24 24" fill="none">
