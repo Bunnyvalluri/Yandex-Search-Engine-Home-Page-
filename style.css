@@ -164,6 +164,10 @@ ol, ul {
   display: none; /* Hidden on desktop */
 }
 
+.top-logo-link {
+  display: none; /* Hidden on desktop */
+}
+
 /* Right side of nav */
 .top-right {
   display: flex;           /* Flexbox: align sign-in and weather */
@@ -822,6 +826,18 @@ ol, ul {
   .mobile-menu-btn:hover {
     background: var(--color-surface-2);
     color: var(--color-text);
+  }
+  .top-logo-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-left: 10px; /* Slight gap from menu button */
+  }
+  .top-logo-svg {
+    height: 20px; /* Slim, elegant logo in header */
+    width: auto;
+    display: block;
   }
   .topnav-inner {
     padding: 0 16px;
