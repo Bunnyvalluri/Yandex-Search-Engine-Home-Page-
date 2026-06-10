@@ -210,6 +210,11 @@ ol, ul {
   transition: background var(--transition-fast), transform var(--transition-fast);
 }
 
+.btn-signin i {
+  margin-right: 6px;
+  font-size: 1.1rem;
+}
+
 .btn-signin:hover {
   background: var(--color-accent-dark);
   transform: translateY(-1px);
@@ -367,15 +372,11 @@ ol, ul {
 }
 
 .service-item:hover {
-  background-color: var(--color-surface-2);
-  transform: translateY(-2px);
+  background-color: rgba(0, 0, 0, 0.02);
+  transform: translateY(-4px);
 }
 
-.service-item:hover .service-icon-wrap {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
-}
-
-/* Icon container */
+/* Icon container with physical 3D bevels */
 .service-icon-wrap {
   width: 56px;
   height: 56px;
@@ -383,9 +384,48 @@ ol, ul {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   transition: box-shadow var(--transition-normal), transform var(--transition-normal);
   flex-shrink: 0;
   overflow: hidden;
+  box-shadow: 
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.4), 
+    inset 0 -1.5px 0 rgba(0, 0, 0, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Glassy shine reflection sweep */
+.service-icon-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+/* Custom individual colored drop glows (Senior UI/UX styling) */
+#service-images .service-icon-wrap { --glow-color: rgba(238, 9, 121, 0.35); }
+#service-video .service-icon-wrap  { --glow-color: rgba(185, 29, 115, 0.35); }
+#service-maps .service-icon-wrap   { --glow-color: rgba(0, 242, 254, 0.35); }
+#service-market .service-icon-wrap { --glow-color: rgba(56, 249, 215, 0.35); }
+#service-news .service-icon-wrap   { --glow-color: rgba(247, 183, 51, 0.35); }
+#service-music .service-icon-wrap  { --glow-color: rgba(251, 194, 235, 0.35); }
+#service-translate .service-icon-wrap { --glow-color: rgba(240, 152, 25, 0.35); }
+#service-mail .service-icon-wrap   { --glow-color: rgba(209, 167, 74, 0.35); }
+#service-weather .service-icon-wrap { --glow-color: rgba(102, 126, 234, 0.35); }
+#service-travel .service-icon-wrap  { --glow-color: rgba(56, 239, 125, 0.35); }
+#service-games .service-icon-wrap   { --glow-color: rgba(160, 68, 255, 0.35); }
+
+.service-item:hover .service-icon-wrap {
+  transform: scale(1.04);
+  /* Apply vibrant colored glow shadow on hover */
+  box-shadow: 
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.4), 
+    inset 0 -1.5px 0 rgba(0, 0, 0, 0.15),
+    0 8px 22px var(--glow-color, rgba(0, 0, 0, 0.15));
 }
 
 .service-icon-img {
@@ -401,12 +441,30 @@ ol, ul {
   display: flex;
   align-items: center;
   justify-content: center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.16));
+  transition: transform var(--transition-normal);
+}
+
+.service-item:hover .service-icon-fa {
+  /* Dynamic rotate and scale to feel alive */
+  transform: scale(1.12) rotate(4deg);
 }
 
 /* "All services" special icon */
 .service-all-wrap {
-  background: var(--color-surface-2);
+  background: var(--color-surface-2) !important;
   border: 1.5px solid var(--color-border);
+  box-shadow: 
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.8), 
+    inset 0 -1.5px 0 rgba(0, 0, 0, 0.05),
+    0 4px 10px rgba(0, 0, 0, 0.04) !important;
+}
+
+.service-item:hover .service-all-wrap {
+  box-shadow: 
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.8), 
+    inset 0 -1.5px 0 rgba(0, 0, 0, 0.05),
+    0 8px 22px rgba(0, 0, 0, 0.1) !important;
 }
 
 .service-label {
@@ -819,18 +877,8 @@ ol, ul {
 
 /* 4. Tablet (481px - 768px) */
 @media (max-width: 768px) {
-  .topnav {
-    height: auto; /* Expand to fit two rows (Row 1: menu/logo/widgets, Row 2: services) */
-  }
-  .topnav-inner {
-    display: grid;
-    grid-template-areas: 
-      "menu logo widgets"
-      "nav nav nav";
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    row-gap: 6px;
-    padding: 6px 16px;
+  .top-services {
+    display: none; /* Hide top navigation links to prevent overlap */
   }
   .mobile-menu-btn {
     display: inline-flex;
@@ -842,7 +890,6 @@ ol, ul {
     color: var(--color-text-muted);
     font-size: var(--font-size-lg);
     transition: background var(--transition-fast), color var(--transition-fast);
-    grid-area: menu;
   }
   .mobile-menu-btn:hover {
     background: var(--color-surface-2);
@@ -853,27 +900,15 @@ ol, ul {
     align-items: center;
     justify-content: center;
     height: 100%;
-    grid-area: logo;
-    justify-self: center;
-    margin-left: 0;
+    margin-left: 10px; /* Slight gap from menu button */
   }
   .top-logo-svg {
     height: 20px; /* Slim, elegant logo in header */
     width: auto;
     display: block;
   }
-  .top-right {
-    grid-area: widgets;
-    justify-self: end;
-  }
-  .top-services {
-    display: flex;
-    grid-area: nav;
-    justify-content: center;
-    gap: 4px;
-    border-top: 1px solid var(--color-border);
-    padding-top: 6px;
-    width: 100%;
+  .topnav-inner {
+    padding: 0 16px;
   }
   .services-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -949,33 +984,12 @@ ol, ul {
     font-size: 18px;
   }
 
+  .topnav {
+    height: var(--topnav-height); /* Keep fixed 48px height on mobile */
+  }
+
   .topnav-inner {
-    padding: 6px 12px;
-    row-gap: 6px;
-  }
-
-  .top-services {
-    justify-content: flex-start; /* Left-align for touch scroll */
-    overflow-x: auto;
-    white-space: nowrap;
-    padding-bottom: 4px;
-    margin-bottom: -2px;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Hide scrollbar Firefox */
-    gap: 2px;
-  }
-
-  .top-services::-webkit-scrollbar {
-    display: none; /* Hide scrollbar Chrome/Safari */
-  }
-
-  .top-link {
-    padding: 4px 8px;
-    font-size: 0.8rem;
-  }
-
-  .top-link:last-child {
-    margin-right: 12px; /* Right gutter on scroll */
+    padding: 0 12px;
   }
 
   .live-clock {
@@ -1044,5 +1058,58 @@ ol, ul {
   .news-card-img {
     width: 70px;
     height: 52px;
+  }
+}
+
+/* =============================================================
+   9. BRAND LOGO ANIMATED DOODLE (SVG MOTION EFFECTS)
+   ============================================================= */
+
+/* Base path setup for interactive local transforms */
+.yandex-logo g > path,
+.top-logo-svg g > path {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover Staggered Letter Bounce Wave */
+.yandex-logo:hover g > path,
+.top-logo-svg:hover g > path {
+  animation: logo-wave-bounce 0.7s ease-in-out;
+}
+
+/* Delays to order wave from Y -> a -> n -> d -> e -> x */
+.yandex-logo g > path:nth-child(6),
+.top-logo-svg g > path:nth-child(6) {
+  animation-delay: 0ms; /* Y */
+}
+.yandex-logo g > path:nth-child(4),
+.top-logo-svg g > path:nth-child(4) {
+  animation-delay: 80ms; /* a */
+}
+.yandex-logo g > path:nth-child(1),
+.top-logo-svg g > path:nth-child(1) {
+  animation-delay: 160ms; /* n */
+}
+.yandex-logo g > path:nth-child(2),
+.top-logo-svg g > path:nth-child(2) {
+  animation-delay: 240ms; /* d */
+}
+.yandex-logo g > path:nth-child(3),
+.top-logo-svg g > path:nth-child(3) {
+  animation-delay: 320ms; /* e */
+}
+.yandex-logo g > path:nth-child(5),
+.top-logo-svg g > path:nth-child(5) {
+  animation-delay: 400ms; /* x */
+}
+
+@keyframes logo-wave-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
   }
 }
