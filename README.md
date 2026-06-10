@@ -4,7 +4,8 @@ A front-end replication of the Yandex homepage built using pure HTML, CSS Flexbo
 
 ## 🚀 Live Demo & Repository
 
-- **Live URL:** [yandex-20.netlify.app](https://yandex-20.netlify.app)
+- **Netlify Live Demo:** [yandex-20.netlify.app](https://yandex-20.netlify.app)
+- **GitHub Pages Demo:** [bunnyvalluri.github.io/Yandex-Search-Engine-Home-Page-](https://bunnyvalluri.github.io/Yandex-Search-Engine-Home-Page-/)
 - **GitHub Repository:** [Bunnyvalluri/Yandex-Search-Engine-Home-Page-](https://github.com/Bunnyvalluri/Yandex-Search-Engine-Home-Page-)
 
 ---
@@ -15,7 +16,7 @@ A front-end replication of the Yandex homepage built using pure HTML, CSS Flexbo
 - **Top Services Bar:** Links to Mail, Disk, Music, News, Travel, Market, and a dropdown "More" link.
 - **Dynamic Clock & Date:** Shows real-time updating time and date (refreshes automatically every 10 seconds).
 - **Weather pill:** High-quality inline SVG sun icon displaying temperature.
-- **Sign In Button:** Custom styled button with a hover scale translation and color animations.
+- **Profile Access Button:** A modern circular profile avatar button with hover scale effects, active scale feedback, and red glow drop shadows.
 
 ### 2. Main Search & Brand Logo
 - **Official SVG Wordmark:** Embeds the official Yandex vector wordmark paths, preventing baseline bottom-clipping and scaling cleanly to any screen resolution.
@@ -32,9 +33,11 @@ A front-end replication of the Yandex homepage built using pure HTML, CSS Flexbo
 - Built-in scale click translations and shadow expansions on hover.
 
 ### 4. Centered News Feed
-- Single-column centered layout aligned with the main search bar, featuring five realistic news cards.
-- **Real Visuals:** Replaced gradient placeholders with real, high-resolution custom images (AI Summit, Stock Markets, Champions League, Smartphone Battery, Space Discovery).
-- Interactive category tabs (All, World, Tech, Sports, Business) and an animated "Show more news" button.
+- Single-column centered layout aligned with the main search bar, dynamically rendering news cards.
+- **Interactive News Categories:** Clicking news tabs (All, World, Tech, Sports, Business) instantly filters and renders related articles.
+- **Staggered Animations:** Loaded articles animate smoothly into view with an elegant, staggered fade-in (`fadeInUp`) transition.
+- **Dynamic Pagination:** The "Show more news" button loads additional articles incrementally (3 at a time) specific to the selected category.
+- **Real Visuals:** Custom AI-generated news cover photos matching each topic (e.g., climate accord, deep ocean expeditions, bullet trains, quantum computing, athletics events, tennis, green energy, autonomous delivery fleets).
 
 ### 5. Multi-Language Footer
 - Clean bottom row showing copyright details, support links, and a stylized globe icon next to a custom language selector.
@@ -71,10 +74,18 @@ The site implements custom media query brackets to scale cleanly across all scre
 ```
 ├── images/
 │   ├── news_ai_summit.png
+│   ├── news_athletics_record.png
+│   ├── news_autonomous_vans.png
+│   ├── news_bullet_train.png
+│   ├── news_climate_accord.png
+│   ├── news_deep_ocean.png
 │   ├── news_football_trophy.png
+│   ├── news_green_energy.png
 │   ├── news_phone_battery.png
+│   ├── news_quantum_computing.png
 │   ├── news_space_galaxy.png
-│   └── news_stock_market.png
+│   ├── news_stock_market.png
+│   └── news_tennis_victory.png
 ├── index.html
 ├── style.css
 └── README.md
