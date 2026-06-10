@@ -197,31 +197,31 @@ ol, ul {
   color: var(--color-text);
 }
 
-.btn-signin {
+.btn-profile {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 6px 20px;
-  font-size: var(--font-size-sm);
-  font-weight: 600;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   color: var(--color-surface);
   background: var(--color-accent);
-  border-radius: var(--radius-pill);
-  transition: background var(--transition-fast), transform var(--transition-fast);
+  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.2);
 }
 
-.btn-signin i {
-  margin-right: 6px;
-  font-size: 1.1rem;
+.btn-profile i {
+  font-size: 1.35rem;
 }
 
-.btn-signin:hover {
+.btn-profile:hover {
   background: var(--color-accent-dark);
-  transform: translateY(-1px);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.35);
 }
 
-.btn-signin:active {
-  transform: translateY(0);
+.btn-profile:active {
+  transform: scale(0.95);
 }
 
 /* ── 4. HERO SECTION ──────────────────────────────────────── */
@@ -996,9 +996,7 @@ ol, ul {
     display: none; /* Hide clock on mobile screen to save space (since phone status bar has it) */
   }
 
-  .btn-signin {
-    padding: 5px 16px; /* Slightly more compact button on mobile */
-  }
+  /* Profile button is a fixed circular size of 36px, so no mobile padding override is required */
 
   .content-section {
     padding: 16px 12px 28px;

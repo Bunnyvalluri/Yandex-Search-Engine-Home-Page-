@@ -137,9 +137,8 @@
           </svg>
           <span>+24°</span>
         </button>
-        <button id="sign-in-btn" class="btn-signin">
+        <button id="profile-btn" class="btn-profile" aria-label="Profile">
           <i class="fa-solid fa-circle-user"></i>
-          <span>Sign in</span>
         </button>
       </div>
     </div>
@@ -334,90 +333,8 @@
           </div>
         </div>
 
-        <!-- News Articles -->
-        <article class="news-card" id="news-card-1">
-          <div class="news-card-content">
-            <div class="news-meta">
-              <span class="news-source">Reuters</span>
-              <span class="news-dot">·</span>
-              <span class="news-time">2h ago</span>
-            </div>
-            <h3 class="news-headline">Global tech leaders gather for AI summit in San Francisco to discuss responsible
-              development</h3>
-            <p class="news-snippet">World's largest technology companies convened today to discuss standards and
-              policies for artificial intelligence governance and ethical deployment across industries.</p>
-          </div>
-          <div class="news-card-img-wrap">
-            <img src="images/news_ai_summit.png" alt="AI Summit" class="news-card-img" />
-          </div>
-        </article>
-
-        <article class="news-card" id="news-card-2">
-          <div class="news-card-content">
-            <div class="news-meta">
-              <span class="news-source">Bloomberg</span>
-              <span class="news-dot">·</span>
-              <span class="news-time">4h ago</span>
-            </div>
-            <h3 class="news-headline">Stock markets reach new highs as inflation data signals economic stability</h3>
-            <p class="news-snippet">Major indices posted gains as investors reacted positively to the latest consumer
-              price index data, showing inflation cooling for the third consecutive month.</p>
-          </div>
-          <div class="news-card-img-wrap">
-            <img src="images/news_stock_market.png" alt="Stock Market" class="news-card-img" />
-          </div>
-        </article>
-
-        <article class="news-card" id="news-card-3">
-          <div class="news-card-content">
-            <div class="news-meta">
-              <span class="news-source">BBC Sport</span>
-              <span class="news-dot">·</span>
-              <span class="news-time">6h ago</span>
-            </div>
-            <h3 class="news-headline">Champions League final preview: Two giants clash in epic battle for European glory
-            </h3>
-            <p class="news-snippet">Fans from across the globe are descending on the host city ahead of what promises to
-              be one of the most anticipated finals in European football history.</p>
-          </div>
-          <div class="news-card-img-wrap">
-            <img src="images/news_football_trophy.png" alt="Champions League Trophy" class="news-card-img" />
-          </div>
-        </article>
-
-        <article class="news-card" id="news-card-4">
-          <div class="news-card-content">
-            <div class="news-meta">
-              <span class="news-source">TechCrunch</span>
-              <span class="news-dot">·</span>
-              <span class="news-time">8h ago</span>
-            </div>
-            <h3 class="news-headline">Next-generation smartphones unveiled with breakthrough battery technology lasting
-              5 days</h3>
-            <p class="news-snippet">Major manufacturers showcased their latest flagship devices featuring solid-state
-              batteries and entirely redesigned charging architecture at the annual consumer electronics expo.</p>
-          </div>
-          <div class="news-card-img-wrap">
-            <img src="images/news_phone_battery.png" alt="New Smartphone" class="news-card-img" />
-          </div>
-        </article>
-
-        <article class="news-card" id="news-card-5">
-          <div class="news-card-content">
-            <div class="news-meta">
-              <span class="news-source">NASA</span>
-              <span class="news-dot">·</span>
-              <span class="news-time">1d ago</span>
-            </div>
-            <h3 class="news-headline">James Webb Space Telescope captures most distant galaxy ever observed in stunning
-              new images</h3>
-            <p class="news-snippet">Scientists confirmed detection of a galaxy from just 300 million years after the Big
-              Bang, providing unprecedented insight into the early universe's formation.</p>
-          </div>
-          <div class="news-card-img-wrap">
-            <img src="images/news_space_galaxy.png" alt="James Webb Space Telescope Galaxy" class="news-card-img" />
-          </div>
-        </article>
+        <!-- News Articles Container (Populated dynamically via JS) -->
+        <div id="news-container" class="news-container"></div>
 
         <button class="load-more-btn" id="load-more-news">Show more news</button>
       </div>
@@ -455,14 +372,197 @@
   </footer>
 
   <script>
-    /* ── Tab switching ─────────────────────────────── */
+    /* ── Dynamic News Feed ────────────────────────── */
+    const NEWS_DATA = [
+      {
+        id: 1,
+        category: 'tech',
+        source: 'Reuters',
+        time: '2h ago',
+        headline: 'Global tech leaders gather for AI summit in San Francisco to discuss responsible development',
+        snippet: 'World\'s largest technology companies convened today to discuss standards and policies for artificial intelligence governance and ethical deployment across industries.',
+        image: 'images/news_ai_summit.png'
+      },
+      {
+        id: 2,
+        category: 'business',
+        source: 'Bloomberg',
+        time: '4h ago',
+        headline: 'Stock markets reach new highs as inflation data signals economic stability',
+        snippet: 'Major indices posted gains as investors reacted positively to the latest consumer price index data, showing inflation cooling for the third consecutive month.',
+        image: 'images/news_stock_market.png'
+      },
+      {
+        id: 3,
+        category: 'sports',
+        source: 'BBC Sport',
+        time: '6h ago',
+        headline: 'Champions League final preview: Two giants clash in epic battle for European glory',
+        snippet: 'Fans from across the globe are descending on the host city ahead of what promises to be one of the most anticipated finals in European football history.',
+        image: 'images/news_football_trophy.png'
+      },
+      {
+        id: 4,
+        category: 'tech',
+        source: 'TechCrunch',
+        time: '8h ago',
+        headline: 'Next-generation smartphones unveiled with breakthrough battery technology lasting 5 days',
+        snippet: 'Major manufacturers showcased their latest flagship devices featuring solid-state batteries and entirely redesigned charging architecture at the annual consumer electronics expo.',
+        image: 'images/news_phone_battery.png'
+      },
+      {
+        id: 5,
+        category: 'world',
+        source: 'NASA',
+        time: '1d ago',
+        headline: 'James Webb Space Telescope captures most distant galaxy ever observed in stunning new images',
+        snippet: 'Scientists confirmed detection of a galaxy from just 300 million years after the Big Bang, providing unprecedented insight into the early universe\'s formation.',
+        image: 'images/news_space_galaxy.png'
+      },
+      {
+        id: 6,
+        category: 'world',
+        source: 'BBC News',
+        time: '1h ago',
+        headline: 'Historic Climate Accord Signed by 120 Nations at Global Summit',
+        snippet: 'In a landmark decision, delegates from over 100 countries have signed a comprehensive agreement to accelerate carbon reduction targets by 2030.',
+        image: 'images/news_climate_accord.png'
+      },
+      {
+        id: 7,
+        category: 'world',
+        source: 'National Geographic',
+        time: '5h ago',
+        headline: 'Deep Ocean Expedition Discovers 50 New Marine Species in Mariana Trench',
+        snippet: 'Marine biologists exploring the depths of the Pacific Ocean have documented dozens of previously unknown species, including bioluminescent organisms.',
+        image: 'images/news_deep_ocean.png'
+      },
+      {
+        id: 8,
+        category: 'world',
+        source: 'Euronews',
+        time: '12h ago',
+        headline: 'Super-fast Bullet Train Network Connects Major European Capitals',
+        snippet: 'A new high-speed rail line has officially opened, cutting travel times between Paris, Brussels, and Berlin in half using next-generation maglev technology.',
+        image: 'images/news_bullet_train.png'
+      },
+      {
+        id: 9,
+        category: 'tech',
+        source: 'MIT Tech Review',
+        time: '14h ago',
+        headline: 'Quantum Computing Breakthrough: Researchers Achieve Stable 1000-Qubit Processor',
+        snippet: 'Scientists have successfully minimized decoherence in a massive quantum chip, paving the way for commercially viable quantum simulations.',
+        image: 'images/news_quantum_computing.png'
+      },
+      {
+        id: 10,
+        category: 'sports',
+        source: 'ESPN',
+        time: '3h ago',
+        headline: 'World Athletics Championships: New Record Set in Men\'s 100m Dash',
+        snippet: 'An extraordinary sprint saw the world record shattered by 0.03 seconds in front of a sold-out stadium, marking a historic moment in track and field.',
+        image: 'images/news_athletics_record.png'
+      },
+      {
+        id: 11,
+        category: 'sports',
+        source: 'Sports Illustrated',
+        time: '10h ago',
+        headline: 'Underdog Victory: Rising Star Triumphs in Thrilling Grand Slam Tennis Final',
+        snippet: 'A dramatic five-set match concluded with an unseeded 19-year-old lifting the trophy after defeating the world number one in a thrilling comeback.',
+        image: 'images/news_tennis_victory.png'
+      },
+      {
+        id: 12,
+        category: 'business',
+        source: 'Financial Times',
+        time: '7h ago',
+        headline: 'Green Energy Conglomerate Announces $50 Billion Expansion Into Wind and Solar Infrastructure',
+        snippet: 'The investment marks the largest private-sector commitment to renewable energy deployment in history, aiming to power 10 million homes.',
+        image: 'images/news_green_energy.png'
+      },
+      {
+        id: 13,
+        category: 'business',
+        source: 'Forbes',
+        time: '18h ago',
+        headline: 'E-commerce Giant Launches Fleet of Fully Autonomous Electric Delivery Vans',
+        snippet: 'The new self-driving fleet begins public road operations today, aiming to reduce last-mile delivery times and carbon emissions by 40%.',
+        image: 'images/news_autonomous_vans.png'
+      }
+    ];
+
+    let currentCategory = 'all';
+    let visibleCount = 3;
+
+    function renderNews() {
+      const container = document.getElementById('news-container');
+      const loadMoreBtn = document.getElementById('load-more-news');
+      if (!container) return;
+
+      const filtered = NEWS_DATA.filter(item => {
+        if (currentCategory === 'all') return true;
+        return item.category === currentCategory;
+      });
+
+      container.innerHTML = '';
+
+      const toRender = filtered.slice(0, visibleCount);
+      toRender.forEach((article, index) => {
+        const card = document.createElement('article');
+        card.className = 'news-card';
+        // Apply staggered animation delays dynamically
+        card.style.animationDelay = `${index * 0.08}s`;
+        card.innerHTML = `
+          <div class="news-card-content">
+            <div class="news-meta">
+              <span class="news-source">${article.source}</span>
+              <span class="news-dot">·</span>
+              <span class="news-time">${article.time}</span>
+            </div>
+            <h3 class="news-headline">${article.headline}</h3>
+            <p class="news-snippet">${article.snippet}</p>
+          </div>
+          <div class="news-card-img-wrap">
+            <img src="${article.image}" alt="${article.headline}" class="news-card-img" />
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      if (filtered.length > visibleCount) {
+        loadMoreBtn.style.display = 'block';
+      } else {
+        loadMoreBtn.style.display = 'none';
+      }
+    }
+
+    // Tab switching event listeners
     const tabs = document.querySelectorAll('.feed-tab');
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
+
+        // Extract category from ID: tab-all -> all, tab-world -> world, etc.
+        currentCategory = tab.id.replace('tab-', '');
+        visibleCount = 3; // Reset visible count to default 3
+        renderNews();
       });
     });
+
+    // Load more button event listener
+    const loadMoreBtn = document.getElementById('load-more-news');
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', () => {
+        visibleCount += 3;
+        renderNews();
+      });
+    }
+
+    // Initial render
+    renderNews();
 
     /* ── Live Clock ────────────────────────────────── */
     function updateClock() {
