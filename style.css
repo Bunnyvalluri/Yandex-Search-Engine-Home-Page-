@@ -819,8 +819,18 @@ ol, ul {
 
 /* 4. Tablet (481px - 768px) */
 @media (max-width: 768px) {
-  .top-services {
-    display: none; /* Hide top navigation links to prevent overlap */
+  .topnav {
+    height: auto; /* Expand to fit two rows (Row 1: menu/logo/widgets, Row 2: services) */
+  }
+  .topnav-inner {
+    display: grid;
+    grid-template-areas: 
+      "menu logo widgets"
+      "nav nav nav";
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    row-gap: 6px;
+    padding: 6px 16px;
   }
   .mobile-menu-btn {
     display: inline-flex;
@@ -832,6 +842,7 @@ ol, ul {
     color: var(--color-text-muted);
     font-size: var(--font-size-lg);
     transition: background var(--transition-fast), color var(--transition-fast);
+    grid-area: menu;
   }
   .mobile-menu-btn:hover {
     background: var(--color-surface-2);
@@ -842,15 +853,27 @@ ol, ul {
     align-items: center;
     justify-content: center;
     height: 100%;
-    margin-left: 10px; /* Slight gap from menu button */
+    grid-area: logo;
+    justify-self: center;
+    margin-left: 0;
   }
   .top-logo-svg {
     height: 20px; /* Slim, elegant logo in header */
     width: auto;
     display: block;
   }
-  .topnav-inner {
-    padding: 0 16px;
+  .top-right {
+    grid-area: widgets;
+    justify-self: end;
+  }
+  .top-services {
+    display: flex;
+    grid-area: nav;
+    justify-content: center;
+    gap: 4px;
+    border-top: 1px solid var(--color-border);
+    padding-top: 6px;
+    width: 100%;
   }
   .services-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -926,12 +949,33 @@ ol, ul {
     font-size: 18px;
   }
 
-  .topnav {
-    height: var(--topnav-height); /* Keep fixed 48px height on mobile */
+  .topnav-inner {
+    padding: 6px 12px;
+    row-gap: 6px;
   }
 
-  .topnav-inner {
-    padding: 0 12px;
+  .top-services {
+    justify-content: flex-start; /* Left-align for touch scroll */
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 4px;
+    margin-bottom: -2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+    gap: 2px;
+  }
+
+  .top-services::-webkit-scrollbar {
+    display: none; /* Hide scrollbar Chrome/Safari */
+  }
+
+  .top-link {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
+
+  .top-link:last-child {
+    margin-right: 12px; /* Right gutter on scroll */
   }
 
   .live-clock {
