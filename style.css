@@ -127,7 +127,6 @@ ol, ul {
   align-items: center;
   gap: 4px;
   flex-wrap: nowrap;
-  overflow: hidden;
 }
 
 .top-link {
